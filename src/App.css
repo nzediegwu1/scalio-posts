@@ -1,0 +1,21 @@
+.container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  -webkit-transform: translate(-50%, -50%);
+  display: flex;
+}
+
+body,
+html {
+  height: 100%;
+}
+
+.post {
+  text-align: center;
+  width: 50%;
+  word-break: keep-all;
+  margin: auto;
+}
