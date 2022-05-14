@@ -4,6 +4,8 @@ import axios from 'axios';
 
 function Home() {
   const [postId, setPostId] = useState('');
+  const [loading, setLoading] = useState(false);
+
   const navigate = useNavigate();
 
   const handleChange = ({ target }) => {
@@ -11,6 +13,7 @@ function Home() {
   };
 
   const sendPost = async () => {
+    setLoading(true);
     try {
       const { data } = await axios.get(
         `https://scalio-post-service.herokuapp.com/posts/${postId}`
@@ -24,6 +27,7 @@ function Home() {
         `Error from server: ${error.response?.data.message || error.message}`
       );
     }
+    setLoading(false);
   };
 
   return (
@@ -34,8 +38,8 @@ function Home() {
         value={postId}
         onChange={handleChange}
       />
-      <button disabled={postId ? false : true} onClick={sendPost}>
-        Send
+      <button disabled={loading} onClick={sendPost}>
+        {loading ? 'Loading...' : 'Send'}
       </button>
     </div>
   );
